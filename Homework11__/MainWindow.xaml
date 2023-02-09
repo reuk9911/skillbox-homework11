@@ -1,0 +1,154 @@
+﻿<Window x:Class="Homework11__.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Homework11__"
+        mc:Ignorable="d"
+        Title="Данные о сотрудниках" 
+        Height="500" 
+        Width="1100" 
+        MinHeight="500"
+        MinWidth="1100"
+        Closing="Window_Closing"
+        WindowState="Maximized">
+    <Window.Resources>
+        <!--<local:FieldIntToStringConverter x:Key="FIntToStringConverter"/>
+        <local:FieldStringToStringConverter x:Key="FStringToStringConverter"/>-->
+    </Window.Resources>
+    <Grid RenderTransformOrigin="0.41,0.463">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border
+            BorderBrush="Black"
+            Margin="2"
+            CornerRadius="3"
+            Padding="1"
+            BorderThickness="1"
+            Grid.Column="0">
+            <DataGrid 
+                AutoGenerateColumns="False"
+                x:Name="DbViewGrid"
+                HorizontalAlignment="Left" 
+                Grid.Column = "0"
+                Margin="10,10,0,0" 
+                VerticalAlignment="Top">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" />
+                    <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}"/>
+                    <DataGridTextColumn Header="Паспорт" Binding="{Binding Passport}"/>
+                    <DataGridTextColumn Header="Кто изменил" Binding="{Binding UserType}"/>
+                    <DataGridTextColumn Header="Когда изменил" Binding="{Binding LastChange}"/>
+                    <DataGridTextColumn Header="Что изменил" Binding="{Binding NameOfFieldChanged}"/>
+                    <DataGridTextColumn Header="Тип изменений" Binding="{Binding ModifyType}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+
+        <ComboBox 
+            Grid.Column="1" 
+            Grid.Row="0"
+            HorizontalAlignment="Right" 
+            Margin="0,10,28,0" 
+            VerticalAlignment="Top" 
+            Width="124"
+            IsReadOnly="True"
+            IsEditable="False"
+            x:Name="ComboCurrentUser" 
+            SelectionChanged="ComboCurrentUser_SelectionChanged" SelectedIndex="0"/>
+        <Border 
+            x:Name="AddRecordBorder"
+            Grid.Column="1" 
+            
+            Margin="10,64,30,179">
+            <Grid HorizontalAlignment="Right" Margin="0,97,0,-97">
+                <TextBox 
+                    x:Name="NameTextBox" 
+                    HorizontalAlignment="Left" 
+                    Height="22" 
+                    Margin="139,6,0,0" 
+                    TextWrapping="Wrap" 
+                    Text="" 
+                    VerticalAlignment="Top"
+                    Width="120"/>
+                <TextBox 
+                    x:Name="SurnameTextBox" 
+                    HorizontalAlignment="Left" 
+                    Height="22" 
+                    Margin="139,33,0,0" 
+                    TextWrapping="Wrap" 
+                    Text="" 
+                    VerticalAlignment="Top"
+                    Width="120"/>
+                <TextBox 
+                    x:Name="PatronymicTextBox" 
+                    HorizontalAlignment="Left" 
+                    Height="22" 
+                    Margin="139,60,0,0" 
+                    TextWrapping="Wrap" 
+                    Text="" 
+                    VerticalAlignment="Top"
+                    Width="120"/>
+                <TextBox 
+                    x:Name="PhoneNumberTextBox" 
+                    HorizontalAlignment="Left" 
+                    Height="22" 
+                    Margin="139,87,0,0" 
+                    TextWrapping="Wrap" 
+                    Text="" 
+                    VerticalAlignment="Top"
+                    Width="120"/>
+                <TextBox 
+                    x:Name="PassportTextBox" 
+                    HorizontalAlignment="Left" 
+                    Height="22" 
+                    Margin="139,114,0,0" 
+                    TextWrapping="Wrap" 
+                    Text="" 
+                    VerticalAlignment="Top"
+                    Width="120"/>
+
+                <Button 
+                    Content="Добавить" 
+                    HorizontalAlignment="Left" 
+                    Margin="10,145,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="75" Click="Button_Click"/>
+                <Label 
+                    Content="Имя" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" Margin="10,6,0,0"/>
+                <Label 
+                    Content="Фамилия" 
+                    HorizontalAlignment="Left" 
+                    Margin="10,33,0,0" 
+                    VerticalAlignment="Top"/>
+                <Label 
+                    Content="Отчество" 
+                    HorizontalAlignment="Left" 
+                    Margin="10,60,0,0" 
+                    VerticalAlignment="Top"/>
+                <Label 
+                    Content="Номер Телефона" 
+                    HorizontalAlignment="Left" 
+                    Margin="10,87,0,0" 
+                    VerticalAlignment="Top"/>
+                <Label 
+                    Content="Паспорт" 
+                    HorizontalAlignment="Left" 
+                    Margin="10,114,0,0" 
+                    VerticalAlignment="Top"/>
+
+            </Grid>
+        </Border>
+        <CheckBox Content="Скрыть дополнительные поля" Grid.Column="1" HorizontalAlignment="Left" Margin="101,64,0,0" VerticalAlignment="Top" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"/>
+
+    </Grid>
+</Window>
