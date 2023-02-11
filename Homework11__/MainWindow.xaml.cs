@@ -71,7 +71,7 @@ namespace Homework11__
         {
             if (CurrentUser is Manager)
             {
-                Manag.AddRecord(NameTextBox.Text, SurnameTextBox.Text, PatronymicTextBox.Text,
+                Manag.AddClient(NameTextBox.Text, SurnameTextBox.Text, PatronymicTextBox.Text,
                     PhoneNumberTextBox.Text, PassportTextBox.Text);
             }
         }

@@ -12,6 +12,13 @@ namespace Homework11__
     public class Client : INotifyPropertyChanged
     {
         #region поля
+
+        /// <summary>
+        /// Использованные Id
+        /// </summary>
+        private static List<int> UsedIds;
+
+
         private int id;
         private string name;
         private string surname;
@@ -188,6 +195,12 @@ namespace Homework11__
         #endregion
 
         #region конструкторы
+
+        static Client()
+        {
+            UsedIds = new List<int>();
+        }
+
         public Client(int Id, string Name, string Surname, string Patronymic, string PhoneNumber, 
             string Passport, string LastChange, string NameOfFieldChanged, string ModifyType, string UserType):
             this(Id, Name, Surname, Patronymic, PhoneNumber, Passport)
@@ -196,6 +209,7 @@ namespace Homework11__
             this.nameOfFieldChanged = NameOfFieldChanged;
             this.modifyType = ModifyType;
             this.userType = UserType;
+            
         }
 
         public Client(int Id, string Name, string Surname, string Patronymic, string PhoneNumber, string Passport)
@@ -206,17 +220,48 @@ namespace Homework11__
             this.patronymic = Patronymic;
             this.phoneNumber = PhoneNumber;
             this.passport = Passport;
+            Client.UsedIds.Add(Id);
+        }
+
+        public Client(string Name, string Surname, string Patronymic, string PhoneNumber, string Passport)
+        {
+            this.id = Client.GetNewId();
+            this.name = Name;
+            this.surname = Surname;
+            this.patronymic = Patronymic;
+            this.phoneNumber = PhoneNumber;
+            this.passport = Passport;
+            Client.UsedIds.Add(Id);
         }
 
         #endregion
 
-        #region методы
+        #region события
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             //if (PropertyChanged != null)
             //    PropertyChanged(this, new PropertyChangedEventArgs(prop));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
+        #endregion
+
+        #region методы
+        /// <summary>
+        /// Выдает новый Id для записи
+        /// </summary>
+        /// <returns>Id для новой записи</returns>
+        private static int GetNewId()
+        {
+            int i = 0;
+            do
+            {
+                i++;
+            }
+            while (Client.UsedIds.Contains(i));
+            Client.UsedIds.Add(i);
+            return i;
         }
         #endregion
 

@@ -220,10 +220,9 @@ namespace Homework11__
         /// <param name="Patronymic">Отчество</param>
         /// <param name="PhoneNumber">Номер телефона</param>
         /// <param name="Passport">Паспорт</param>
-        public void AddRecord(string Name, string Surname, string Patronymic, string PhoneNumber, string Passport)
+        public void AddClient(string Name, string Surname, string Patronymic, string PhoneNumber, string Passport)
         {
-            int id = Db.GetNewId();
-            Client client = new Client(id, Name, Surname, Patronymic, PhoneNumber, Passport);
+            Client client = new Client(Name, Surname, Patronymic, PhoneNumber, Passport);
             client.LastChange = DateTime.Now.ToString();
             client.UserType = "Manager";
             client.ModifyType = "Added";
@@ -231,6 +230,11 @@ namespace Homework11__
             Clients.Add(client);
             Db.Clients.Add(client);
             client.PropertyChanged += ClientChangedHandler;
+        }
+
+        public void DeleteClient(int Id)
+        {
+
         }
         #endregion
     }

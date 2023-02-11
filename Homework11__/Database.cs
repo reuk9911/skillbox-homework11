@@ -11,19 +11,7 @@ namespace Homework11__
 {
     public class Database
     {
-        #region поля
-
-        /// <summary>
-        /// Использованные Id
-        /// </summary>
-        private HashSet<int> UsedIds;
-
-        /// <summary>
-        /// Последний выданный Id методом GetNewId
-        /// </summary>
-        private int LastId;
-
-        #endregion
+        
 
         #region свойства
         
@@ -41,11 +29,10 @@ namespace Homework11__
         /// <param name="FileName">Имя текстового файла с БД</param>
         public Database(string FileName)
         {
-            UsedIds = new HashSet<int>();
-            LastId = 1;
+            
 
             Clients = new ObservableCollection<Client>();
-
+            
 
             StreamReader Sr = new StreamReader(FileName, Encoding.Default);
             using (Sr)
@@ -55,7 +42,7 @@ namespace Homework11__
                 while ((line = Sr.ReadLine()) != null)
                 {
                     string[] arr = line.Split('|');
-                    UsedIds.Add(Convert.ToInt32(arr[0]));
+                    
                     Client r = new Client(Convert.ToInt32(arr[0]), arr[1], arr[2], arr[3], arr[4],
                         arr[5], arr[6], arr[7], arr[8], arr[9]);
                     Clients.Add(r);
@@ -67,22 +54,7 @@ namespace Homework11__
 
         #region методы
 
-        /// <summary>
-        /// Выдает новый Id для записи
-        /// </summary>
-        /// <returns>Id для новой записи</returns>
-        public int GetNewId()
-        {
-
-            do
-            {
-                LastId += 1;
-            }
-            while (UsedIds.Contains(LastId));
-            UsedIds.Add(LastId);
-            return LastId;
-
-        }
+        
 
         /// <summary>
         /// Возвращает запись по Id
