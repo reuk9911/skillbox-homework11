@@ -232,9 +232,17 @@ namespace Homework11__
             client.PropertyChanged += ClientChangedHandler;
         }
 
-        public void DeleteClient(int Id)
+        public bool DeleteClient(int Id)
         {
-
+            int index = IndexById(Id);
+            if (index >= 0)
+            {
+                Clients.RemoveAt(index);
+                Db.Clients.RemoveAt(index);
+                return true;
+            }
+            else
+                return false;
         }
         #endregion
     }

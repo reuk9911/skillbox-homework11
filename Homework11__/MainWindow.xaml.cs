@@ -56,7 +56,8 @@ namespace Homework11__
                     DbViewGrid.AutoGenerateColumns = false;
 
                     DbViewGrid.ItemsSource = CurrentUser.Clients; //установка источника данных
-                    AddRecordBorder.IsEnabled = false;
+                    AddClientGroup.IsEnabled = false;
+                    DeleteClientGroup.IsEnabled = false;
                     ComboSort.SelectedIndex = -1;
                     break;
                 case "Менеджер":
@@ -64,7 +65,8 @@ namespace Homework11__
                     CurrentUser = Manag;
                     CurrentUser.Refresh();
                     DbViewGrid.ItemsSource = CurrentUser.Clients; //установка источника данных
-                    AddRecordBorder.IsEnabled = true;
+                    AddClientGroup.IsEnabled = true;
+                    DeleteClientGroup.IsEnabled = true;
                     ComboSort.SelectedIndex = -1;
                     break;
                 default:
@@ -129,6 +131,24 @@ namespace Homework11__
             //чтобы отображение в DbViewGrid поменялось
             DbViewGrid.ItemsSource = null;
             DbViewGrid.ItemsSource = CurrentUser.Clients;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            int id;
+            if (Int32.TryParse(TextBoxDeleteClient.Text, out id) == false)
+            {
+                MessageBox.Show("Введите число", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.Yes);
+            }
+            else
+            {
+                if (((Manager)CurrentUser).DeleteClient(id) == false)
+                {
+                    MessageBox.Show("Id не найден", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.Yes);
+                }
+            }
+
+
         }
     }
 }

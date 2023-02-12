@@ -64,7 +64,7 @@
             x:Name="ComboCurrentUser" 
             SelectionChanged="ComboCurrentUser_SelectionChanged" SelectedIndex="0"/>
         <Border 
-            x:Name="AddRecordBorder"
+            x:Name="AddClientGroup"
             Grid.Column="1" 
             
             Margin="12,210,28,33">
@@ -148,14 +148,23 @@
 
             </Grid>
         </Border>
-        <CheckBox Content="Скрыть дополнительные поля" Grid.Column="1" HorizontalAlignment="Left" Margin="103,189,0,0" VerticalAlignment="Top" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"/>
+        <CheckBox Content="Скрыть дополнительные поля" Grid.Column="1" HorizontalAlignment="Left" Margin="103,189,0,0" 
+                  VerticalAlignment="Top" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"/>
         <Label Content="Пользователь:" Grid.Column="1" HorizontalAlignment="Right" Margin="0,25,201,0" VerticalAlignment="Top"/>
         <ComboBox Grid.Column="1" HorizontalAlignment="Right" Margin="0,52,26,0" VerticalAlignment="Top" 
                   Width="124" Height="22" x:Name="ComboSort" SelectionChanged="ComboSort_SelectionChanged"/>
-        <Label Content="Сортировка:" Grid.Column="1" HorizontalAlignment="Right" Margin="0,52,211,0" VerticalAlignment="Top" RenderTransformOrigin="0.612,2.955"/>
-        <Label Content="Id" Grid.Column="1" HorizontalAlignment="Right" Margin="0,105,266,0" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,108,30,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Удалить" Grid.Column="1" HorizontalAlignment="Right" Margin="0,136,211,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Сортировка:" Grid.Column="1" HorizontalAlignment="Right" Margin="0,52,211,0" VerticalAlignment="Top" 
+               RenderTransformOrigin="0.612,2.955"/>
+        <Border Grid.Column="1" Margin="26,105,30,312" x:Name="DeleteClientGroup">
+            <Grid>
+                <Label Content="Id" HorizontalAlignment="Right" Margin="0,0,236,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Right" Height="23" Margin="0,3,0,0" TextWrapping="Wrap" 
+                    Text="" VerticalAlignment="Top" Width="120" x:Name="TextBoxDeleteClient"/>
+                <Button Content="Удалить" HorizontalAlignment="Right" Margin="0,31,181,0" VerticalAlignment="Top" 
+                    Width="75" Click="Button_Click_1" x:Name="ButtonDeleteClient"/>
+
+            </Grid>
+        </Border>
 
     </Grid>
 </Window>
