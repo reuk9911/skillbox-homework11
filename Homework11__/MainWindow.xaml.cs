@@ -35,6 +35,11 @@ namespace Homework11__
             ComboCurrentUser.Items.Add("Консультант");
             ComboCurrentUser.Items.Add("Менеджер");
 
+            ComboSort.Items.Add("Id");
+            ComboSort.Items.Add("Имя");
+            ComboSort.Items.Add("Фамилия");
+            ComboSort.Items.Add("Отчество");
+
             DbViewGrid.SelectionMode = DataGridSelectionMode.Single;
             DbViewGrid.SelectionUnit = DataGridSelectionUnit.Cell;
         }
@@ -52,7 +57,7 @@ namespace Homework11__
 
                     DbViewGrid.ItemsSource = CurrentUser.Clients; //установка источника данных
                     AddRecordBorder.IsEnabled = false;
-
+                    ComboSort.SelectedIndex = -1;
                     break;
                 case "Менеджер":
                     Db.Save();
@@ -60,6 +65,7 @@ namespace Homework11__
                     CurrentUser.Refresh();
                     DbViewGrid.ItemsSource = CurrentUser.Clients; //установка источника данных
                     AddRecordBorder.IsEnabled = true;
+                    ComboSort.SelectedIndex = -1;
                     break;
                 default:
                     return;
@@ -97,6 +103,32 @@ namespace Homework11__
             DbViewGrid.Columns[7].Visibility = Visibility.Hidden;
             DbViewGrid.Columns[8].Visibility = Visibility.Hidden;
             DbViewGrid.Columns[9].Visibility = Visibility.Hidden;
+        }
+
+        private void ComboSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Client.SortCriterion cs;
+            switch (ComboSort.SelectedIndex)
+            {
+                case 0:
+                    cs = Client.SortCriterion.Id;
+                    break;
+                case 1:
+                    cs = Client.SortCriterion.Name;
+                    break;
+                case 2:
+                    cs = Client.SortCriterion.Surname;
+                    break;
+                case 3:
+                    cs = Client.SortCriterion.Patronymic;
+                    break;
+                default:
+                    return;
+            }
+            CurrentUser.Sort(cs);
+            //чтобы отображение в DbViewGrid поменялось
+            DbViewGrid.ItemsSource = null;
+            DbViewGrid.ItemsSource = CurrentUser.Clients;
         }
     }
 }

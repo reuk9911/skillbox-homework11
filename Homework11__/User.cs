@@ -19,7 +19,7 @@ namespace Homework11__
         /// <summary>
         /// Записи текущего пользователя
         /// </summary>
-        public ObservableCollection<Client> Clients { get; protected set; }
+        public ObservableCollection<Client> Clients { get; /*protected */set; }
 
         #endregion
 
@@ -91,6 +91,13 @@ namespace Homework11__
         public abstract bool SetPhoneNumber(int Id, string PhoneNumber);
         public abstract bool SetPassport(int Id, string Passport);
 
-#endregion
+        public void Sort(Client.SortCriterion sortCriterion)
+        {
+            List<Client> l = new List<Client>(this.Clients);
+            l.Sort(Client.SortBy(sortCriterion));
+            this.Clients = new ObservableCollection<Client>(l);
+        }
+
+        #endregion
     }
 }

@@ -37,16 +37,16 @@
                 Margin="10,10,0,0" 
                 VerticalAlignment="Top">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}"/>
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" />
-                    <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}"/>
-                    <DataGridTextColumn Header="Паспорт" Binding="{Binding Passport}"/>
-                    <DataGridTextColumn Header="Кто изменил" Binding="{Binding UserType}"/>
-                    <DataGridTextColumn Header="Когда изменил" Binding="{Binding LastChange}"/>
-                    <DataGridTextColumn Header="Что изменил" Binding="{Binding NameOfFieldChanged}"/>
-                    <DataGridTextColumn Header="Тип изменений" Binding="{Binding ModifyType}"/>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic, Mode=TwoWay}" />
+                    <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Паспорт" Binding="{Binding Passport, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Кто изменил" Binding="{Binding UserType, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Когда изменил" Binding="{Binding LastChange, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Что изменил" Binding="{Binding NameOfFieldChanged, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Тип изменений" Binding="{Binding ModifyType, Mode=TwoWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
@@ -56,7 +56,7 @@
             Grid.Column="1" 
             Grid.Row="0"
             HorizontalAlignment="Right" 
-            Margin="0,10,28,0" 
+            Margin="0,25,26,0" 
             VerticalAlignment="Top" 
             Width="124"
             IsReadOnly="True"
@@ -67,8 +67,8 @@
             x:Name="AddRecordBorder"
             Grid.Column="1" 
             
-            Margin="10,64,30,179">
-            <Grid HorizontalAlignment="Right" Margin="0,97,0,-97">
+            Margin="12,210,28,33">
+            <Grid HorizontalAlignment="Right" Margin="0,10,10,-10">
                 <TextBox 
                     x:Name="NameTextBox" 
                     HorizontalAlignment="Left" 
@@ -148,7 +148,14 @@
 
             </Grid>
         </Border>
-        <CheckBox Content="Скрыть дополнительные поля" Grid.Column="1" HorizontalAlignment="Left" Margin="101,64,0,0" VerticalAlignment="Top" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"/>
+        <CheckBox Content="Скрыть дополнительные поля" Grid.Column="1" HorizontalAlignment="Left" Margin="103,189,0,0" VerticalAlignment="Top" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"/>
+        <Label Content="Пользователь:" Grid.Column="1" HorizontalAlignment="Right" Margin="0,25,201,0" VerticalAlignment="Top"/>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Right" Margin="0,52,26,0" VerticalAlignment="Top" 
+                  Width="124" Height="22" x:Name="ComboSort" SelectionChanged="ComboSort_SelectionChanged"/>
+        <Label Content="Сортировка:" Grid.Column="1" HorizontalAlignment="Right" Margin="0,52,211,0" VerticalAlignment="Top" RenderTransformOrigin="0.612,2.955"/>
+        <Label Content="Id" Grid.Column="1" HorizontalAlignment="Right" Margin="0,105,266,0" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,108,30,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Удалить" Grid.Column="1" HorizontalAlignment="Right" Margin="0,136,211,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

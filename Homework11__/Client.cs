@@ -45,7 +45,7 @@ namespace Homework11__
         /// <summary>
         /// Имя
         /// </summary>
-        
+
         public string Name
         {
             get => this.name;
@@ -62,8 +62,8 @@ namespace Homework11__
         /// <summary>
         /// Фамилия
         /// </summary>
-        
-        public string Surname 
+
+        public string Surname
         {
             get => this.surname;
             set
@@ -79,7 +79,7 @@ namespace Homework11__
         /// <summary>
         /// Отчество
         /// </summary>
-        
+
         public string Patronymic
         {
             get => this.patronymic;
@@ -96,7 +96,7 @@ namespace Homework11__
         /// <summary>
         /// Номер телефона
         /// </summary>
-        
+
         public string PhoneNumber
         {
             get => this.phoneNumber;
@@ -113,7 +113,7 @@ namespace Homework11__
         /// <summary>
         /// Паспорт
         /// </summary>
-        
+
         public string Passport
         {
             get => this.passport;
@@ -130,7 +130,7 @@ namespace Homework11__
         /// <summary>
         /// Кто изменил данные(консультант или менеджер).
         /// </summary>
-        
+
         public string UserType
         {
             get => this.userType;
@@ -146,7 +146,7 @@ namespace Homework11__
         /// <summary>
         /// дата и время изменения записи
         /// </summary>
-        
+
         public string LastChange
         {
             get => this.lastChange;
@@ -162,7 +162,7 @@ namespace Homework11__
         /// <summary>
         /// какие данные изменены
         /// </summary>
-        
+
         public string NameOfFieldChanged
         {
             get => this.nameOfFieldChanged;
@@ -178,7 +178,7 @@ namespace Homework11__
         /// <summary>
         /// Тип изменений
         /// </summary>
-        
+
         public string ModifyType
         {
             get => this.modifyType;
@@ -201,15 +201,15 @@ namespace Homework11__
             UsedIds = new List<int>();
         }
 
-        public Client(int Id, string Name, string Surname, string Patronymic, string PhoneNumber, 
-            string Passport, string LastChange, string NameOfFieldChanged, string ModifyType, string UserType):
+        public Client(int Id, string Name, string Surname, string Patronymic, string PhoneNumber,
+            string Passport, string LastChange, string NameOfFieldChanged, string ModifyType, string UserType) :
             this(Id, Name, Surname, Patronymic, PhoneNumber, Passport)
         {
             this.lastChange = LastChange;
             this.nameOfFieldChanged = NameOfFieldChanged;
             this.modifyType = ModifyType;
             this.userType = UserType;
-            
+
         }
 
         public Client(int Id, string Name, string Surname, string Patronymic, string PhoneNumber, string Passport)
@@ -263,9 +263,62 @@ namespace Homework11__
             Client.UsedIds.Add(i);
             return i;
         }
+
+        public static IComparer<Client> SortBy(SortCriterion Criterion)
+        {
+            switch (Criterion)
+            {
+                case SortCriterion.Id: return new SortById(); 
+                case SortCriterion.Name: return new SortByName(); 
+                case SortCriterion.Surname: return new SortBySurname(); 
+                case SortCriterion.Patronymic: return new SortByPatronymic(); 
+                default: return null; 
+            }
+        }
+
         #endregion
 
+        #region перечисления
 
+        public enum SortCriterion{Id, Name, Surname, Patronymic};
+
+        #endregion
+
+        #region вложенные классы
+        private class SortByName : IComparer<Client>
+        {
+            public int Compare(Client x, Client y)
+            {
+                return String.Compare(x.Name, y.Name);
+            }
+        }
+
+        private class SortBySurname : IComparer<Client>
+        {
+            public int Compare(Client x, Client y)
+            {
+                return String.Compare(x.Surname, y.Surname);
+            }
+        }
+
+        private class SortByPatronymic : IComparer<Client>
+        {
+            public int Compare(Client x, Client y)
+            {
+                return String.Compare(x.Patronymic, y.Patronymic);
+            }
+        }
+
+        private class SortById : IComparer<Client>
+        {
+            public int Compare(Client x, Client y)
+            {
+                if (x.Id >= y.Id) return 0;
+                else return -1;
+            }
+        }
+
+        #endregion
 
     }
 }
